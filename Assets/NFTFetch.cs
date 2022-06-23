@@ -21,7 +21,7 @@ public class NFTFetch : MonoBehaviour
     {
         // string account = PlayerPrefs.GetString("Account");
 
-        string account = "0x729326Aca347af56A94d172BBE384e055C46c6Ca";
+        string account = "0xE10e8433464913428BC9E3DA0C2EF4d3C9C5CBbE";
 
         // fetch uri from chain
         string uri = "https://testnets-api.opensea.io/api/v1/assets?owner=" + account;
@@ -37,15 +37,18 @@ public class NFTFetch : MonoBehaviour
         string imageUri = result.assets[0].image_url;
 
         // fetch image and display in game
+        
         for(int i = 0, j = 0; i < result.assets.Count; i++)
         {
             if(result.assets[i].image_url != null)
             {
-                GameObject newObject = Instantiate(prefab, new Vector3(3.5f*(i-j),0,0), Quaternion.identity);
+                GameObject newObject = Instantiate(prefab, new Vector3(5f*(i-j),0,0), Quaternion.identity);
                 UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(result.assets[i].image_url);
-                print(result.assets[i].image_url);
                 await textureRequest.SendWebRequest();
+                var Texture = ((DownloadHandlerTexture)textureRequest.downloadHandler).texture;
+                float ratio = Texture.height/Texture.width;
                 newObject.GetComponent<Renderer>().material.mainTexture = ((DownloadHandlerTexture)textureRequest.downloadHandler).texture;
+                newObject.transform.localScale = new Vector3(4f, 4f*ratio, 0.04f);
             }
             else
                 j++;
