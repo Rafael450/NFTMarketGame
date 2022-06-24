@@ -41,7 +41,7 @@ public class NFTFetch : MonoBehaviour
         {
             if(result.assets[i].image_url != null)
             {
-                GameObject newObject = Instantiate(prefab, new Vector3(5f*(i-j),0,0), Quaternion.identity);
+                GameObject newObject = Instantiate(prefab, new Vector3(5f*(i-j), 70,0), Quaternion.identity);
                 UnityWebRequest textureRequest = UnityWebRequestTexture.GetTexture(result.assets[i].image_url);
                 await textureRequest.SendWebRequest();
                 var Texture = ((DownloadHandlerTexture)textureRequest.downloadHandler).texture;
