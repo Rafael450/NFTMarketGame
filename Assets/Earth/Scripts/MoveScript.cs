@@ -17,7 +17,7 @@ namespace DigitalRuby.Earth
 {
     public class MoveScript : MonoBehaviour
     {
-        public float Speed = 10.0f;
+        public float Speed = 30.0f;
 
         private void Start()
         {
@@ -31,8 +31,8 @@ namespace DigitalRuby.Earth
             move = Input.GetAxis("Horizontal");
             transform.position += (transform.right * Speed * Time.deltaTime * move);
 
-            var pitch = Input.GetAxis("Mouse Y") * -150.0f * Time.deltaTime;
-            var yaw = Input.GetAxis("Mouse X") * 150.0f * Time.deltaTime;
+            var pitch = Input.GetAxis("Mouse Y") * -200.0f * Time.deltaTime;
+            var yaw = Input.GetAxis("Mouse X") * 200.0f * Time.deltaTime;
             var roll = (Input.GetMouseButton(1) ? yaw : 0.0f);
             if (roll != 0.0f)
             {
