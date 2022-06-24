@@ -19,11 +19,10 @@ public class NFTFetch : MonoBehaviour
 
     async void Start()
     {
-        // string account = PlayerPrefs.GetString("Account");
-
-        string account = "0xE10e8433464913428BC9E3DA0C2EF4d3C9C5CBbE";
+        string account = PlayerPrefs.GetString("Account");
 
         // fetch uri from chain
+        // ##########don't forget to add a person's collections too#############
         string uri = "https://testnets-api.opensea.io/api/v1/assets?owner=" + account;
 
         // fetch json from uri
